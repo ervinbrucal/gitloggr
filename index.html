@@ -1,1 +1,36 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <!-- stylesheets -->
+        <link rel="stylesheet" href="assets/libs/uikit-2.20.3/css/uikit.css"/>
+        
+        <!-- 3rd party scripts -->
+        <script src="assets/libs/jquery/jquery-2.1.4.min.js"> </script>
+        <script src="assets/libs/uikit-2.20.3/js/uikit.js"> </script>
+        <script data-require="angular.js@*" data-semver="1.4.0-rc.2"
+                src="https://code.angularjs.org/1.4.0-rc.2/angular.js">
+        </script>
+        
+        <!-- custom scripts -->
+        <script src="app/components/home/homeController.js"></script>
+        <script src="app/shared/authFactory.js"></script>
+        <script src="app/app.modules.js"></script>
+
+    </head>
+
+    <body ng-app="authModule">
+        
+        <div ng-controller="homeController">
+            
+            <form name="authForm" ng-submit="exportToCSV(username, password)">
+                <input type="text" name="username" placeholder="username" ng-model="username"/>
+                <input type="password" name="password" placeholder="personal auth token" ng-model="password"/>
+
+                <input type="submit" value="export"/>
+            </form>
+        </div>
+    </body>
+    
+</html>
