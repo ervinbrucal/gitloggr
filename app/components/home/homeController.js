@@ -1,12 +1,15 @@
 var homeController = function($scope, authService) {
-    $scope.message = "this is a home controller";
     $scope.username = "";
-    $scope.password = "";
+    $scope.authtoken = "";
     
-    $scope.exportToCSV = function(username, password) {
-        console.log("exporting to csv");
-        var response = authService.authenticateUser(username, password);
-        
+    $scope.message = "test";
+//    $scope.user = "";
+    
+    $scope.exportToCSV = function(username, authtoken) {
+        authService.authenticateUser(username, authtoken)
+        .then(function(response) {
+            $scope.user = response
+        });
     };
     
 };

@@ -15,7 +15,8 @@
         
         <!-- custom scripts -->
         <script src="app/components/home/homeController.js"></script>
-        <script src="app/shared/authFactory.js"></script>
+        <script src="app/shared/factories/authFactory.js"></script>
+        <script src="app/shared/models/userInfoModel.js"></script>
         <script src="app/app.modules.js"></script>
 
     </head>
@@ -24,12 +25,19 @@
         
         <div ng-controller="homeController">
             
-            <form name="authForm" ng-submit="exportToCSV(username, password)">
+            <form name="authForm" ng-submit="exportToCSV(username, authtoken)">
                 <input type="text" name="username" placeholder="username" ng-model="username"/>
-                <input type="password" name="password" placeholder="personal auth token" ng-model="password"/>
+                <input type="text" name="authtoken" placeholder="personal auth token" ng-model="authtoken"/>
 
                 <input type="submit" value="export"/>
             </form>
+            
+            <div>
+                {{user.login}}
+                {{message}}
+                
+            </div>
+            
         </div>
     </body>
     
