@@ -29,6 +29,10 @@
             console.log(response.data);
             UIkit.notify(response.data.message);
         }
+        
+        $scope.update = function(selectedRepo) {
+            console.log(selectedRepo)
+        }
     };
     
     homeModule.controller("homeController", homeController);
