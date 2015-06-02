@@ -30,10 +30,20 @@
                 }
             );
         }
+        
+        var getCommits = function(commitsUrlFragment, authorName) {
+            var commitUrl = "https://api.github.com/repos/" + commitsUrlFragment + "/commits?author=" + authorName
+            console.info("GitHub commit URL:", commitUrl);
+            return $http.get(commitUrl)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
 
         return {
             authenticateUser : authenticateUser,
-            getRepos : getRepos
+            getRepos : getRepos,
+            getCommits: getCommits
         };
     };
     

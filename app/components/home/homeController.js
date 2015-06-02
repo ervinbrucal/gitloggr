@@ -13,6 +13,7 @@
 
         var setUser = function(data) {
             console.log(data);
+            $scope.commits = null
             $scope.login = data.login;
             $scope.avatar_url = data.avatar_url;
             $scope.repos_url = data.repos_url;
@@ -24,6 +25,11 @@
                 });
             
         };
+        
+        var setCommits = function(data) {
+            console.log("setCommits", data)
+            $scope.commits = data
+        }
     
         var displayError = function(response) {
             console.log(response.data);
@@ -31,7 +37,8 @@
         }
         
         $scope.update = function(selectedRepo) {
-            console.log(selectedRepo)
+            githubFactory.getCommits(selectedRepo, $scope.login)
+                .then(setCommits, displayError)
         }
     };
     
