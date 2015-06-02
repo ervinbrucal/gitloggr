@@ -27,8 +27,10 @@
         };
         
         var setCommits = function(data) {
-            console.log("setCommits", data)
-            $scope.commits = data
+            console.log("setCommits", data, data.length)
+            if (data.length) {
+                $scope.commits = data
+            }
         }
     
         var displayError = function(response) {
@@ -37,6 +39,7 @@
         }
         
         $scope.update = function(selectedRepo) {
+            $scope.commits = null
             githubFactory.getCommits(selectedRepo, $scope.login)
                 .then(setCommits, displayError)
         }
