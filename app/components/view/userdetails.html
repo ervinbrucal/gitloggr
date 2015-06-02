@@ -19,18 +19,18 @@
 
     <table ng-show="userCommits" class="uk-table uk-table-striped">
         <thead>
-            <tr>
+            <tr class="uk-text-bold">
                 <th>Date</th><th>Message</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="(date,commits) in userCommits">
-                <td>
+                <td class="uk-text-left">
                   {{date}}
                 </td>
-                <td>
-                <ul ng-repeat="commitMessage in commits">
-                    <li>{{commitMessage}}</li>
+                <td class="uk-text-left">
+                    <ul class="uk-list" ng-repeat="commitMessage in commits">
+                        <li>{{commitMessage}}</li>
                     </ul>
                 </td>
             </tr>
