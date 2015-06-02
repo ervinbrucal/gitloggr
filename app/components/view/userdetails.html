@@ -23,9 +23,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="commit in commits | orderBy: +commit.commit.committer.date">
-              <td>{{commit.commit.committer.date | date:'M/d/yyyy'}}</td>
-              <td>{{commit.commit.message}}</td>
+            <tr ng-repeat="commit in commits | orderBy:'-date'">
+              <td>{{commit.date | date:'M/d/yyyy'}}</td>
+              <td>{{commit.message}}</td>
             </tr>
         </tbody>
     </table>

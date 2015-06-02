@@ -27,9 +27,21 @@
         };
         
         var setCommits = function(data) {
-            console.log("setCommits", data, data.length)
+            
             if (data.length) {
-                $scope.commits = data
+                
+                var commits = [];
+                
+                for(var i=0; i < data.length; i++) {
+                    commits.push(
+                        {
+                            date : new Date(data[i].commit.committer.date),
+                            message : data[i].commit.message
+                        }
+                    );
+                }
+                
+                $scope.commits = commits
             }
         }
     
