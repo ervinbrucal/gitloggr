@@ -11,7 +11,7 @@
 
             var credentials = btoa(username + ':' + authtoken);
             var authorization = {'Authorization': 'Basic ' + credentials};
-            var header = { headers: authorization}
+            var header = { headers: authorization }
 
             return $http.get(url, header)
                 .then( function(response) {
@@ -22,8 +22,11 @@
         };
         
         var getRepos = function(repoUrl) {
+            
             console.log("retrieving repo list");
+            
             repoUrl = repoUrl + "?type=all";
+            
             return $http.get(repoUrl).then(
                 function(response) {
                     console.log("repos:", response.data);
@@ -33,8 +36,9 @@
         }
         
         var getCommits = function(commitsUrlFragment, authorName) {
-            var commitUrl = "https://api.github.com/repos/" + commitsUrlFragment + "/commits?author=" + authorName
-            console.info("GitHub commit URL:", commitUrl);
+            var commitUrl = "https://api.github.com/repos/" + 
+                commitsUrlFragment + "/commits?author=" + authorName
+            
             return $http.get(commitUrl)
                 .then(function(response) {
                     return response.data;

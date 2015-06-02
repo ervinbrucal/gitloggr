@@ -2,9 +2,9 @@
 
     var homeModule = angular.module("homeModule");
     
-    var homeController = function($scope, githubFactory, $filter) {
-        $scope.username = "breisa.moralde@orangeandbronze.com";
-        $scope.authtoken = "b2b46f5d269a17350a1d23da798715839b136e6c";
+    var homeController = function($scope, githubFactory, dateFactory) {
+        $scope.username = "";
+        $scope.authtoken = "";
         
         $scope.exportToCSV = function(username, authtoken) {
             githubFactory.authenticateUser(username, authtoken)
@@ -32,7 +32,7 @@
             for(var i=0; i < data.length; i++) {
                 
                 var dateCommitted = new Date(data[i].commit.committer.date);
-                var currFilterDate = $filter('date')(dateCommitted, 'MM-dd-yyyy');
+                var currFilterDate = dateFactory.formatShortDate(dateCommitted);
                 var commitMessage = data[i].commit.message;
                 
                 if (!commitsMap[currFilterDate]) {
@@ -43,8 +43,6 @@
             }
             
             $scope.userCommits = commitsMap;
-            console.log("scope", $scope.userCommits)
-
         }
     
         var displayError = function(response) {
