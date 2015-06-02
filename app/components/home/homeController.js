@@ -3,9 +3,8 @@
     var homeModule = angular.module("homeModule", []);
     
     var homeController = function($scope, githubFactory) {
-        $scope.username = "";
+        $scope.username = "breisa.moralde@orangeandbronze.com";
         $scope.authtoken = "";
-        $scope.message = "test";
         
         $scope.exportToCSV = function(username, authtoken) {
             githubFactory.authenticateUser(username, authtoken)
@@ -13,7 +12,16 @@
         };
 
         var setUser = function(data) {
-            $scope.user = data
+            console.log(data);
+            $scope.name = data.name;
+            $scope.repos_url = data.repos_url;
+            
+            githubFactory.getRepos(data.repos_url).then( 
+                function(responseRepos){
+                    console.log(responseRepos);
+                }
+            );
+            
         };
     
         var displayError = function(response) {
@@ -21,7 +29,6 @@
             UIkit.notify(response.data.message);
         }
     };
-    
     
     homeModule.controller("homeController", homeController);
     

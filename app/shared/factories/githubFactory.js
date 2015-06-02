@@ -20,9 +20,20 @@
             );
 
         };
+        
+        var getRepos = function(repoUrl) {
+            console.log("retrieving repo list");
+            return $http.get(repoUrl).then(
+                function(response) {
+                    console.log("repos:", response.data);
+                    return response.data;
+                }
+            );
+        }
 
         return {
-            authenticateUser : authenticateUser
+            authenticateUser : authenticateUser,
+            getRepos : getRepos
         };
     };
     
