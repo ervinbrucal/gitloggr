@@ -3,8 +3,7 @@
 
     var githubFactory = function($http) {
 
-        //authenticates a user given a username and password
-        //sends the request to github
+        //authenticates a user given a username and authtoken
         var authenticateUser = function(username, authtoken) {
             console.log("authenticating username: ", username, " authtoken: ", authtoken);
 
@@ -16,7 +15,6 @@
 
             return $http.get(url, header)
                 .then( function(response) {
-                    console.log("Response",response)
                     return response.data;
                 }
             );
@@ -27,6 +25,8 @@
             authenticateUser : authenticateUser
         };
     };
+    
+    
     
     var homeModule = angular.module("homeModule");
     homeModule.factory("githubFactory", githubFactory);
