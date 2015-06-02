@@ -10,7 +10,16 @@
             githubFactory.authenticateUser(username, authtoken)
             .then(setUser, displayError);
         };
+        
+        $scope.update = function(selectedRepo) {
+            $scope.commits = null
+            githubFactory
+                .getCommits(selectedRepo, $scope.login)
+                .then(setCommits, displayError)                
+        }
 
+        
+        
         var setUser = function(data) {
             console.log(data);
             $scope.commits = null
@@ -35,12 +44,6 @@
             $scope.userCommits = commitFactory.groupByDate(data);
         };
         
-        $scope.update = function(selectedRepo) {
-            $scope.commits = null
-            githubFactory
-                .getCommits(selectedRepo, $scope.login)
-                .then(setCommits, displayError)                
-        }
     };
     
     homeModule.controller("homeController", homeController);
