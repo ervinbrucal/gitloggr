@@ -1,5 +1,5 @@
 <div ng-show="login">
     <span>Login: <strong>{{login}}</strong></span><br/>
     <img ng-src="{{avatar_url}}" width="80" height="80" />
-    <select ng-model="repos" ng-options="repo.name for repo in repos"></select>
+    <select ng-model="selectedRepo" ng-options="repo.name for repo in repos" ng-change="update(selectedRepo)"></select>
 </div>
