@@ -29,7 +29,6 @@
             
             return $http.get(repoUrl).then(
                 function(response) {
-                    console.log("repos:", response.data);
                     return response.data;
                 }
             );
@@ -50,6 +49,7 @@
             getRepos : getRepos,
             getCommits: getCommits
         };
+        
     };
     
     

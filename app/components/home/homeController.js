@@ -2,7 +2,7 @@
 
     var homeModule = angular.module("homeModule");
     
-    var homeController = function($scope, githubFactory, dateFactory) {
+    var homeController = function($scope, githubFactory, commitFactory) {
         $scope.username = "";
         $scope.authtoken = "";
         
@@ -26,35 +26,20 @@
             
         };
         
-        var organizeCommits = function(data) {
-            
-            var commitsMap = {}
-            for(var i=0; i < data.length; i++) {
-                
-                var dateCommitted = new Date(data[i].commit.committer.date);
-                var currFilterDate = dateFactory.formatShortDate(dateCommitted);
-                var commitMessage = data[i].commit.message;
-                
-                if (!commitsMap[currFilterDate]) {
-                    commitsMap[currFilterDate] = []
-                }
-                
-                commitsMap[currFilterDate].push(commitMessage)
-            }
-            
-            $scope.userCommits = commitsMap;
-        }
-    
         var displayError = function(response) {
             console.log(response.data);
             UIkit.notify(response.data.message);
         }
         
+        var setCommits = function(data) {
+            $scope.userCommits = commitFactory.groupByDate(data);
+        };
+        
         $scope.update = function(selectedRepo) {
             $scope.commits = null
             githubFactory
                 .getCommits(selectedRepo, $scope.login)
-                .then(organizeCommits, displayError)                
+                .then(setCommits, displayError)                
         }
     };
     
