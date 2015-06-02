@@ -27,22 +27,22 @@
         };
         
         var organizeCommits = function(data) {
-            var commits = new Map();
             
+            var commitsMap = {}
             for(var i=0; i < data.length; i++) {
                 
                 var dateCommitted = new Date(data[i].commit.committer.date);
                 var currFilterDate = $filter('date')(dateCommitted, 'MM-dd-yyyy');
                 var commitMessage = data[i].commit.message;
                 
-                if (!commits.get(currFilterDate)) {
-                    commits.set(currFilterDate, new Array())
+                if (!commitsMap[currFilterDate]) {
+                    commitsMap[currFilterDate] = []
                 }
                 
-                commits.get(currFilterDate).push(commitMessage)
+                commitsMap[currFilterDate].push(commitMessage)
             }
             
-            $scope.userCommits = commits;
+            $scope.userCommits = commitsMap;
             console.log("scope", $scope.userCommits)
 
         }
