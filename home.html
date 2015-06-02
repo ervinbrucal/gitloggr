@@ -1,0 +1,12 @@
+<div>
+
+    <form name="authForm" ng-submit="exportToCSV(username, authtoken)">
+        <input type="text" name="username" placeholder="username" ng-model="username"/>
+        <input type="text" name="authtoken" placeholder="personal auth token" ng-model="authtoken"/>
+
+        <input type="submit" value="export"/>
+    </form>
+
+    <div ng-include="'app/components/view/userdetails.html'"></div>
+
+</div>

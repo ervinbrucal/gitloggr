@@ -1,6 +1,6 @@
 (function() {
 
-    var homeModule = angular.module("homeModule", []);
+    var homeModule = angular.module("homeModule");
     
     var homeController = function($scope, githubFactory) {
         $scope.username = "";

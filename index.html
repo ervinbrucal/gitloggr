@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="homeModule">
 
     <head>
         <!-- stylesheets -->
@@ -14,6 +14,9 @@
         <script data-require="angular.js@*" data-semver="1.4.0-rc.2"
                 src="https://code.angularjs.org/1.4.0-rc.2/angular.js">
         </script>
+        <script data-require="angular-route.js@*" data-semver="1.4.0-rc.2"
+                src="https://code.angularjs.org/1.4.0-rc.2/angular-route.js">
+        </script>
         
         <!-- custom scripts -->
         <script src="app/app.modules.js"></script>
@@ -22,21 +25,12 @@
         
 
     </head>
-
-    <body ng-app="homeModule">
+    
+    <body>
         
-        <div ng-controller="homeController">
-            
-            <form name="authForm" ng-submit="exportToCSV(username, authtoken)">
-                <input type="text" name="username" placeholder="username" ng-model="username"/>
-                <input type="text" name="authtoken" placeholder="personal auth token" ng-model="authtoken"/>
-
-                <input type="submit" value="export"/>
-            </form>
-
-            <div ng-include="'app/components/view/userdetails.html'"></div>
-            
-        </div>
+        <h1>GitLoggr</h1>
+        <div ng-view></div>
+        
     </body>
     
 </html>
