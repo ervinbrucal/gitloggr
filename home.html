@@ -1,10 +1,20 @@
 <div>
+    
+    <form name="authForm" ng-submit="exportToCSV(username, authtoken)" class="uk-form">
+        <fieldset data-uk-margin>
+            
+            <div class="uk-form-row">
+                <input type="text" name="username" placeholder="username" ng-model="username"/>
+            </div>
+            <div class="uk-form-row">
+                <input type="text" name="authtoken" placeholder="personal auth token" ng-model="authtoken"/>
+            </div>
+            
+            <div class="uk-form-row">
+                <input type="submit" value="export" class="uk-button uk-button-primary" />
+            </div>
+        </fieldset>
 
-    <form name="authForm" ng-submit="exportToCSV(username, authtoken)">
-        <input type="text" name="username" placeholder="username" ng-model="username"/>
-        <input type="text" name="authtoken" placeholder="personal auth token" ng-model="authtoken"/>
-
-        <input type="submit" value="export"/>
     </form>
 
     <div ng-include="'app/components/view/userdetails.html'"></div>

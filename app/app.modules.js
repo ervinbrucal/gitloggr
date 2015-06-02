@@ -4,7 +4,8 @@
     
     //routes
     homeModule.config(function($routeProvider){
-        $routeProvider.when("/home", {
+        $routeProvider
+        .when("/home", {
             templateUrl: "home.html",
             controller: "homeController"
         })

@@ -1,19 +1,33 @@
 <div ng-show="login">
     <span>Login: <strong>{{login}}</strong></span><br/>
     <img ng-src="{{avatar_url}}" width="80" height="80" />
-    <select ng-model="selectedRepo" ng-options="repo.name for repo in repos" ng-change="update(selectedRepo.full_name)"></select>
     
-    <table ng-show="commits">
+    <div>        
+        <form class="uk-form">
+
+            <fieldset data-uk-margin>
+                <legend>Choose a repository</legend>
+                <select ng-model="selectedRepo" ng-options="repo.name for repo in repos" 
+                ng-change="update(selectedRepo.full_name)"></select>
+            </fieldset>
+
+        </form>
+        
+
+    </div>
+    
+    <table ng-show="commits" class="uk-table uk-table-striped">
         <thead>
             <tr>
-                <td>Date</td><td>Message</td>
+                <th>Date</th><th>Message</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="commit in commits | orderBy:+commit.commit.committer.data">
+            <tr ng-repeat="commit in commits | orderBy: +commit.commit.committer.date">
               <td>{{commit.commit.committer.date | date:'M/d/yyyy'}}</td>
               <td>{{commit.commit.message}}</td>
             </tr>
         </tbody>
     </table>
+    
 </div>
