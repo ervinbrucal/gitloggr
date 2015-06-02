@@ -16,6 +16,8 @@
 
     </div>
     
+    XX{{userCommits}}XX
+
     <table ng-show="commits" class="uk-table uk-table-striped">
         <thead>
             <tr>
@@ -23,9 +25,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="commit in commits | orderBy:'-date'">
-              <td>{{commit.date | date:'M/d/yyyy'}}</td>
-              <td>{{commit.message}}</td>
+            <tr ng-repeat="(key, value) in userCommits">
+              <td>{{key}}</td>
+              <td>{{value}}</td>
             </tr>
         </tbody>
     </table>

@@ -2,9 +2,9 @@
 
     var homeModule = angular.module("homeModule");
     
-    var homeController = function($scope, githubFactory) {
-        $scope.username = "";
-        $scope.authtoken = "";
+    var homeController = function($scope, githubFactory, $filter) {
+        $scope.username = "breisa.moralde@orangeandbronze.com";
+        $scope.authtoken = "b2b46f5d269a17350a1d23da798715839b136e6c";
         
         $scope.exportToCSV = function(username, authtoken) {
             githubFactory.authenticateUser(username, authtoken)
@@ -27,25 +27,24 @@
         };
         
         var organizeCommits = function(data) {
-            var commits = [];
+            var commits = new Map();
             
             for(var i=0; i < data.length; i++) {
-                    commits.push(
-                        {
-                            date : new Date(data[i].commit.committer.date),
-                            message : data[i].commit.message
-                        }
-                    );
+                
+                var dateCommitted = new Date(data[i].commit.committer.date);
+                var currFilterDate = $filter('date')(dateCommitted, 'MM-dd-yyyy');
+                var commitMessage = data[i].commit.message;
+                
+                if (!commits.get(currFilterDate)) {
+                    commits.set(currFilterDate, new Array())
+                }
+                
+                commits.get(currFilterDate).push(commitMessage)
             }
             
-            return commits;
-        }
-        
-        var setCommits = function(data) {
-            
-            if (data.length) {
-                $scope.commits = organizeCommits(data);
-            }
+            $scope.userCommits = commits;
+            console.log("scope", $scope.userCommits)
+
         }
     
         var displayError = function(response) {
@@ -55,8 +54,9 @@
         
         $scope.update = function(selectedRepo) {
             $scope.commits = null
-            githubFactory.getCommits(selectedRepo, $scope.login)
-                .then(setCommits, displayError)
+            githubFactory
+                .getCommits(selectedRepo, $scope.login)
+                .then(organizeCommits, displayError)                
         }
     };
     
