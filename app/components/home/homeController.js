@@ -3,7 +3,7 @@
     var homeModule = angular.module("homeModule", []);
     
     var homeController = function($scope, githubFactory) {
-        $scope.username = "breisa.moralde@orangeandbronze.com";
+        $scope.username = "";
         $scope.authtoken = "";
         
         $scope.exportToCSV = function(username, authtoken) {
@@ -13,14 +13,15 @@
 
         var setUser = function(data) {
             console.log(data);
-            $scope.name = data.name;
+            $scope.login = data.login;
+            $scope.avatar_url = data.avatar_url;
             $scope.repos_url = data.repos_url;
             
-            githubFactory.getRepos(data.repos_url).then( 
-                function(responseRepos){
-                    console.log(responseRepos);
-                }
-            );
+            githubFactory.getRepos(data.repos_url)
+                .then(function(responseRepos){
+                    console.log("repos", responseRepos);
+                    $scope.repos = responseRepos;
+                });
             
         };
     
