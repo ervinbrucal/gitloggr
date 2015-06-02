@@ -1,15 +1,22 @@
-var homeController = function($scope, authService) {
-    $scope.username = "";
-    $scope.authtoken = "";
+(function() {
+
+    var homeModule = angular.module("homeModule", []);
     
-    $scope.message = "test";
-//    $scope.user = "";
-    
-    $scope.exportToCSV = function(username, authtoken) {
-        authService.authenticateUser(username, authtoken)
-        .then(function(response) {
-            $scope.user = response
-        });
+    var homeController = function($scope, githubFactory) {
+        $scope.username = "";
+        $scope.authtoken = "";
+
+        $scope.message = "test";
+
+        $scope.exportToCSV = function(username, authtoken) {
+            githubFactory.authenticateUser(username, authtoken)
+            .then(function(response) {
+                $scope.user = response
+            });
+        };
+
     };
     
-};
+    homeModule.controller("homeController", homeController);
+    
+}());
