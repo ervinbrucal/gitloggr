@@ -26,22 +26,25 @@
             
         };
         
-        var setCommits = function(data) {
+        var organizeCommits = function(data) {
+            var commits = [];
             
-            if (data.length) {
-                
-                var commits = [];
-                
-                for(var i=0; i < data.length; i++) {
+            for(var i=0; i < data.length; i++) {
                     commits.push(
                         {
                             date : new Date(data[i].commit.committer.date),
                             message : data[i].commit.message
                         }
                     );
-                }
-                
-                $scope.commits = commits
+            }
+            
+            return commits;
+        }
+        
+        var setCommits = function(data) {
+            
+            if (data.length) {
+                $scope.commits = organizeCommits(data);
             }
         }
     
