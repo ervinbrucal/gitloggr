@@ -23,6 +23,7 @@
         
         var getRepos = function(repoUrl) {
             console.log("retrieving repo list");
+            repoUrl = repoUrl + "?type=all";
             return $http.get(repoUrl).then(
                 function(response) {
                     console.log("repos:", response.data);
