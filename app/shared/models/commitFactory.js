@@ -1,8 +1,9 @@
 (function() {
+    "use strict";
 
     angular
         .module("homeModule")
-        .factory("commitFactory", commitFactory)
+        .factory("commitFactory", commitFactory);
     
     function commitFactory(dateFactory) {
         
