@@ -15,7 +15,6 @@
         
         return service;
         
-        //authenticates a user given a username and authtoken
         function authenticateUser(username, authtoken) {
             console.log("authenticating username: ", username, " authtoken: ", authtoken);
 
@@ -33,7 +32,6 @@
         }
         
         function getRepos(repoUrl) {
-            
             console.log("retrieving repo list");
             
             repoUrl = repoUrl + "?type=all";

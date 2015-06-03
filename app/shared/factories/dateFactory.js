@@ -1,19 +1,22 @@
 (function(){
     
-    var homeModule = angular.module("homeModule");
+    angular
+        .module("homeModule")
+        .factory("dateFactory", dateFactory);
     
-    var dateFactory = function($filter) {
+    function dateFactory($filter) {
+        
+        var service = {
+            formatShortDate : formatShortDate
+        }
+        
+        return service;
         
         //format date to 'MM-dd-yyyy'
-        var formatShortDate = function(dateGiven) {
+        function formatShortDate(dateGiven) {
             return $filter('date')(dateGiven, 'MM-dd-yyyy');
         };
         
-        return {
-            formatShortDate : formatShortDate
-        };
     };
-    
-    homeModule.factory("dateFactory", dateFactory);
     
 }());
