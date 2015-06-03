@@ -1,26 +1,28 @@
 (function() {
 
-    var homeModule = angular.module("homeModule");
+    angular
+        .module("homeModule")
+        .controller("homeController", homeController)
     
-    var homeController = function($scope, githubFactory, commitFactory) {
-        $scope.username = "";
-        $scope.authtoken = "";
+    function homeController($scope, githubFactory, commitFactory) {
+        $scope.username = ""
+        $scope.authtoken = ""
+        $scope.exportToCSV = exportToCSV
+        $scope.update = update
         
-        $scope.exportToCSV = function(username, authtoken) {
+        function exportToCSV(username, authtoken) {
             githubFactory.authenticateUser(username, authtoken)
             .then(setUser, displayError);
         };
         
-        $scope.update = function(selectedRepo) {
+        function update(selectedRepo) {
             $scope.commits = null
             githubFactory
                 .getCommits(selectedRepo, $scope.login)
                 .then(setCommits, displayError)                
         }
 
-        
-        
-        var setUser = function(data) {
+        function setUser(data) {
             console.log(data);
             $scope.commits = null
             $scope.login = data.login;
@@ -35,17 +37,15 @@
             
         };
         
-        var displayError = function(response) {
+        function displayError(response) {
             console.log(response.data);
             UIkit.notify(response.data.message);
         }
         
-        var setCommits = function(data) {
+        function setCommits(data) {
             $scope.userCommits = commitFactory.groupByDate(data);
         };
         
-    };
-    
-    homeModule.controller("homeController", homeController);
+    }
     
 }());
