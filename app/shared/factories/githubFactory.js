@@ -1,10 +1,22 @@
 
 (function() {
 
-    var githubFactory = function($http) {
-
+    angular
+        .module("homeModule")
+        .factory("githubFactory", githubFactory);
+    
+    function githubFactory($http) {
+        
+        var service = {
+            authenticateUser : authenticateUser,
+            getRepos : getRepos,
+            getCommits: getCommits
+        };
+        
+        return service;
+        
         //authenticates a user given a username and authtoken
-        var authenticateUser = function(username, authtoken) {
+        function authenticateUser(username, authtoken) {
             console.log("authenticating username: ", username, " authtoken: ", authtoken);
 
             var url = "https://api.github.com/user"
@@ -18,10 +30,9 @@
                     return response.data;
                 }
             );
-
-        };
+        }
         
-        var getRepos = function(repoUrl) {
+        function getRepos(repoUrl) {
             
             console.log("retrieving repo list");
             
@@ -34,7 +45,7 @@
             );
         }
         
-        var getCommits = function(commitsUrlFragment, authorName) {
+        function getCommits(commitsUrlFragment, authorName) {
             var commitUrl = "https://api.github.com/repos/" + 
                 commitsUrlFragment + "/commits?author=" + authorName
             
@@ -43,18 +54,7 @@
                     return response.data;
                 });
         }
-
-        return {
-            authenticateUser : authenticateUser,
-            getRepos : getRepos,
-            getCommits: getCommits
-        };
-        
-    };
+    } 
     
-    
-    
-    var homeModule = angular.module("homeModule");
-    homeModule.factory("githubFactory", githubFactory);
 
 }());
