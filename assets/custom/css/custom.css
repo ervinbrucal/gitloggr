@@ -1,0 +1,15 @@
+/* Custom Stylesheet */
+
+/* Center home page */
+div.uk-vertical-align-middle {
+    margin-top: 10%;
+}
+
+/* Fix Search User Button odd color*/
+input.uk-width-1-1.uk-button.uk-button-primary.uk-button-large {
+    color: #ffffff;
+}
+
+div.uk-form-row.uk-text-small {
+    margin-top: 10px;
+}
