@@ -4,6 +4,7 @@
         .module("homeModule")
         .controller("homeController", homeController)
     
+//  TODO : modify controller so that it conforms to john papa's guide.
     function homeController($scope, githubFactory, commitFactory) {
         $scope.username = ""
         $scope.authtoken = ""

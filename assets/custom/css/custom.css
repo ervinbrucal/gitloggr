@@ -7,9 +7,24 @@ div.uk-vertical-align-middle {
 
 /* Fix Search User Button odd color*/
 input.uk-width-1-1.uk-button.uk-button-primary.uk-button-large {
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 div.uk-form-row.uk-text-small {
     margin-top: 10px;
+}
+
+/* Header */
+
+nav.uk-navbar {
+    background: #3C3F41;
+}
+
+nav.uk-navbar a{
+    color: #EAEAEA;
+    margin: 10px 0px 10px 0px;
+}
+
+nav.uk-navbar a:hover{
+    color: #FFFFFF;
 }
