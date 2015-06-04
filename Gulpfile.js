@@ -1,8 +1,22 @@
-var gulp = require('gulp');
-var server = require('browser-sync');
-var reload = server.reload;
+var gulp = require('gulp'),
+    server = require('browser-sync'),
+    reload = server.reload,
+    livereload = require('gulp-livereload'),
+    watch = require('gulp-watch'),
+    less = require('gulp-less');
 
-gulp.task('serve', function() {
+gulp.task('less', function() {
+    var cssDestination = 'app/node_modules/uikit/src/';
+    var lessDestination = cssDestination + 'less/*.less';
+    
+    gulp.src(lessDestination)
+        .pipe(watch(lessDestination))
+        .pipe(less(lessDestination))
+        .pipe(gulp.dest(cssDestination))
+        .pipe(livereload());
+});
+
+gulp.task('serve', ['less'], function() {
       server({
         server: {
           baseDir: 'app'
