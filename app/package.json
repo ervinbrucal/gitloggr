@@ -1,0 +1,11 @@
+{
+  "name": "gitloggr",
+  "version": "1.0.0",
+  "description": "watch your log.",
+  "main": "app.modules.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
