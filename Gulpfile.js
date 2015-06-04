@@ -6,13 +6,13 @@ var gulp = require('gulp'),
     less = require('gulp-less');
 
 gulp.task('less', function() {
-    var cssDestination = 'app/node_modules/uikit/src/';
-    var lessDestination = cssDestination + 'less/*.less';
+    var cssDestination = 'app/node_modules/uikit/src/css';
+    var lessDestination = cssDestination + '/less/*.less';
     
     gulp.src(lessDestination)
         .pipe(watch(lessDestination))
         .pipe(less(lessDestination))
-        .pipe(gulp.dest(cssDestination))
+        .pipe(gulp.dest('css'))
         .pipe(livereload());
 });
 
